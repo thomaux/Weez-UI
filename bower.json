@@ -1,0 +1,25 @@
+{
+  "name": "Weez-UI",
+  "version": "0.0.0",
+  "authors": [
+    "Thomas Anciaux"
+  ],
+  "main": "index.html",
+  "keywords": [
+    "Weez",
+    "Weez-UI"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Weez": "~0.1.0",
+    "knockout.js": "~3.0.0",
+    "bootstrap": "~3.0.3"
+  }
+}

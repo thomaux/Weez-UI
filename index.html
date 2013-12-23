@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weez</title>
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div data-bind="with: game">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Info</h2>
+                <dl>
+                    <dt>Target:</dt>
+                    <dd data-bind="text: target"></dd>
+                    <dt>Scored ticks:</dt>
+                    <dd data-bind="text: scoredTicks"></dd>
+                    <dt>Trump:</dt>
+                    <dd data-bind="toSymbol: trump || defaultTrump"></dd>
+                    <dt>Player #:</dt>
+                    <dd data-bind="text: players.indexOf(currentPlayer) + 1"></dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <h2>Scores</h2>
+                <dl data-bind="foreach: players">
+                    <dt data-bind="text: $index() + 1"></dt>
+                    <dd data-bind="text: score"></dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="alert alert-warning" data-bind="visible: $root.showWarning">
+            Invalid Action!
+            <button type="button" class="close" aria-hidden="true" data-bind="click: $root.showWarning(false)">&times;</button>
+        </div>
+
+        <div class="col-md-12">
+            <h2>Table</h2>
+            <ul class="well well-lg playingCards" data-bind="foreach: table.entries">
+                <li class="card" data-bind="card: item"></li>
+            </ul>
+        </div>
+
+        <div class="col-md-12">
+            <h2>Hand</h2>
+            <div data-bind="with: currentPlayer">
+                <ul class="well well-lg playingCards" data-bind="foreach: hand">
+                    <li class="card" data-bind="click: function(){$root.playCard($data);}, card: $data"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h2>Actions</h2>
+        <div class="btn-group col-md-3" data-bind="foreach: actions">
+            <button class="btn btn-default" data-bind="text: title, click: action"></button>
+        </div>
+        <form class="col-md-9" data-bind="visible: game().phase === 1">
+            <label>Trump:</label>
+            <select class="form-control" data-bind="value: selectedTrump">
+                <option></option>
+                <option value="0">&spades;</option>
+                <option value="1">&clubs;</option>
+                <option value="2">&diams;</option>
+                <option value="3">&hearts;</option>
+            </select>
+        </form>
+    </div>
+
+    <script src="bower_components/knockout.js/knockout.debug.js"></script>
+    <script src="src/bindings.js"></script>
+    <script src="bower_components/requirejs/require.js"></script>
+    <script src="bower_components/Weez/dist/Weez.js"></script>
+    <script src="src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.playingCards .card {
+    vertical-align: top;
+}
+
+body {
+    margin: 20px;
+}
+
+form, .form-control{
+    display: inline-block;
+    width: auto;
+}
